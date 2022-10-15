@@ -1,24 +1,22 @@
 import { useState } from "react";
 import { FlatList, Button, Modal, StyleSheet, Text, View } from "react-native";
 import RenderCampsite from "../features/campsites/RenderCampsite";
-//import { COMMENTS } from '../shared/comments';
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { toggleFavorite } from "../features/favorites/favoritesSlice";
 import { Rating } from "react-native-ratings";
 import { Input } from "react-native-elements";
 import { postComment } from "../features/comments/commentsSlice";
+import * as Animatable from "react-native-animatable";
 
 const CampsiteInfoScreen = ({ route }) => {
-  const { campsite } = route.params;
+  const {campsite } = route.params;
   const [showModal, setShowModal] = useState(false);
   const [rating, setRating] = useState(5);
   const [author, setAuthor] = useState("");
   const [text, setText] = useState("");
 
-  //const [comments, setComments] = useState(COMMENTS);
   const comments = useSelector((state) => state.comments);
-  //const [favorite, setFavorite] = useState(false);
 
   const favorites = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
@@ -59,7 +57,7 @@ const CampsiteInfoScreen = ({ route }) => {
   };
 
   return (
-    <>
+    <Animatable.View animation="fadeInUp" duration={2000} delay={1000}>
       <FlatList
         data={comments.commentsArray.filter(
           (comment) => comment.campsiteId === campsite.id
@@ -119,7 +117,7 @@ const CampsiteInfoScreen = ({ route }) => {
                 handleSubmit();
                 resetForm();
               }}
-              style={{ color: "#5637DD"}}
+              style={{ color: "#5637DD" }}
               title="Submit"
             />
           </View>
@@ -130,13 +128,13 @@ const CampsiteInfoScreen = ({ route }) => {
                 setShowModal(!showModal);
                 resetForm();
               }}
-              style={{ color: "#808080"}}
+              style={{ color: "#808080" }}
               title="Cancel"
             />
           </View>
         </View>
       </Modal>
-    </>
+    </Animatable.View>
   );
 };
 
@@ -161,4 +159,6 @@ const styles = StyleSheet.create({
   },
 });
 
+
 export default CampsiteInfoScreen;
+
