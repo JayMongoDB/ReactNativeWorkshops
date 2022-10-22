@@ -10,7 +10,7 @@ import { postComment } from "../features/comments/commentsSlice";
 import * as Animatable from "react-native-animatable";
 
 const CampsiteInfoScreen = ({ route }) => {
-  const {campsite } = route.params;
+  const { campsite } = route.params;
   const [showModal, setShowModal] = useState(false);
   const [rating, setRating] = useState(5);
   const [author, setAuthor] = useState("");
@@ -159,6 +159,4 @@ const styles = StyleSheet.create({
   },
 });
 
-
 export default CampsiteInfoScreen;
-
